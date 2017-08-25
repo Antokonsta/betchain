@@ -12,6 +12,9 @@ import ru.betchain.applicationcore.login.model.User;
 import ru.betchain.applicationcore.login.service.SecurityService;
 import ru.betchain.applicationcore.login.service.UserService;
 import ru.betchain.applicationcore.login.validator.UserValidator;
+import ru.betchain.applicationcore.matchCenter.service.MatchesMinerFromSites;
+
+import java.io.IOException;
 
 /**
  * Created by Anton on 24.08.17.
@@ -29,6 +32,8 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
+    @Autowired
+    private MatchesMinerFromSites matchesMinerFromSites;
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
@@ -61,6 +66,13 @@ public class UserController {
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
+        try {
+            model.addAttribute("listOfMatches", matchesMinerFromSites.getMatchesByUrl(null));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         return "welcome";
     }
 

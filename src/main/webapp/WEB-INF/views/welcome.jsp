@@ -1,10 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Match center</title>
+    <title>Матч центр</title>
 
 
     <style type="text/css">
@@ -235,16 +236,16 @@
 </form>
 <nav role='navigation'>
     <ul>
-        <li><a href="<%--<c:url value='/addTask/${acc}'/>--%>" >Create bet card</a></li>
+        <li><a href="<%--<c:url value='/addTask/${acc}'/>--%>" >Создать спор</a></li>
        <%-- <li><a href="#">Filter</a>
             <ul>
                 <li><a href="">This week tasks</a></li>
                 <li><a href="">This month tasks</a></li>
             </ul>
         </li>--%>
-        <li><a href="" target="_blank">Edit profile</a></li>
+        <li><a href="" target="_blank">Изменить профиль</a></li>
         <li><a onclick="document.forms['logoutForm'].submit()">
-        </a>Logout ${pageContext.request.userPrincipal.name}</li>
+        </a>Выйти из ${pageContext.request.userPrincipal.name}</li>
 
 
     </ul>
@@ -256,6 +257,32 @@
 <br/>
 <br/>
 <br/>
+
+<c:if test="${!empty listOfMatches}">
+    <table  class="tbl-content">
+        <tr class="tbl-header">
+            <th width="120">Дата</th>
+            <th width="120">Результат</th>
+        </tr>
+        <c:forEach items="${listOfMatches}" var="match">
+            <tr>
+                <td>${match.date}</td>
+                <td><a href="" class="ghost-button-semi-transparent">
+                ${match.left} ${match.leftRes} : ${match.rightRes} ${match.right}</a></td>
+
+              <%--  <td>${task.deadLineOfTask}</td>
+                <td><a href="<c:url value='/edit/${task.numberOfTask}/${acc}'/>" class="button24"> Edit</a></td>
+                <td><a href="<c:url value='/done/${task.numberOfTask}/${acc}'/>">
+                    <img src="http://suttonstoves.co.uk/images/Icon-check-white.png"
+                         border="0" width="25" height="25" align="middle" ></a></td>
+                <td><a href="<c:url value='/remove/${task.numberOfTask}/${acc}'/>">
+                    <img src="http://www.iconsplace.com/icons/preview/white/delete-256.png"
+                         border="0" width="25" height="25"  ></a></td>--%>
+            </tr>
+
+        </c:forEach>
+    </table>
+</c:if>
 
 
 </body>

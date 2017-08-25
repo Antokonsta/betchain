@@ -4,6 +4,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Component;
 import ru.betchain.applicationcore.matchCenter.vo.Match;
 
 import java.io.IOException;
@@ -13,11 +14,12 @@ import java.util.List;
 /**
  * Created by Anton on 25.08.17.
  */
+@Component
 public class MatchesMinerFromSites {
 
-    private static final String DEFAULT_URL = "https://www.championat.com/football/_england.html";
+    private static final String DEFAULT_URL = "https://www.championat.com/football/_spain.html";
 
-    List<Match> getMatchesByUrl (String url) throws IOException {
+    public List<Match> getMatchesByUrl (String url) throws IOException {
         Document doc = Jsoup.connect(url != null ? url : DEFAULT_URL).get();
         //  Elements el = doc.select("div.sport__calendar__block__row");
         Elements el1 = doc.select("div.sport__calendar__block");
