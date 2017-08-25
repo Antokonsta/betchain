@@ -28,7 +28,7 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
-    
+
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
