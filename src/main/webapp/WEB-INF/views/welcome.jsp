@@ -23,7 +23,7 @@
         @import url(http://fonts.googleapis.com/css?family=Lato);
 
         h1 {
-            font-size: 30px;
+            font-size: 26px;
             color: #fff;
             text-transform: uppercase;
             font-weight: 300;
@@ -32,17 +32,29 @@
         }
 
         h2 {
-            font-size: 24px;
-            color: #fff;
+            font-size: 20px;
+            text-decoration: underline;
+            color: #ffffff;
+            text-transform: uppercase;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        h3 {
+            font-size: 18px;
+            text-decoration: underline;
+            color: #ffffff;
             text-transform: uppercase;
             font-weight: 300;
             text-align: center;
             margin-bottom: 15px;
         }
 
+
         table {
             width: 100%;
             table-layout: fixed;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .tbl-header {
@@ -59,7 +71,7 @@
 
         th {
             padding: 20px 15px;
-            text-align: left;
+            text-align: center;
             font-weight: 800;
             font-size: 13.5px;
             color: #fff;
@@ -68,10 +80,10 @@
 
         td {
             padding: 15px;
-            text-align: left;
-            vertical-align: middle;
+            text-align: center;
+            vertical-align: top;
             font-weight: 450;
-            font-size: 12.5px;
+            font-size: 14px;
             color: #fff;
             border-bottom: solid 1px rgba(255, 255, 255, 0.1);
         }
@@ -217,7 +229,7 @@
 
         .ghost-button-semi-transparent {
             display: inline-block;
-            width: 200px;
+            width: 100%;
             padding: 8px;
             color: #fff;
             border: 1px solid #fff;
@@ -229,6 +241,22 @@
             border-color 0.2s ease-out;
         }
 
+        .ghost-button-semi-transparent-for-finished {
+            display: inline-block;
+            width: 100%;
+            padding: 8px;
+            color: #fff;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            text-align: center;
+            outline: none;
+            text-decoration: none;
+            background-color: #fff; /* fallback */
+            background-color: rgba(255, 255, 255, 0.4);
+            border-color: #fff; /* fallback */
+            border-color: rgba(255, 255, 255, 0.4);
+
+        }
         .ghost-button-semi-transparent:hover,
         .ghost-button-semi-transparent:active {
             background-color: #fff; /* fallback */
@@ -271,13 +299,15 @@
 <nav role='navigation'>
     <ul>
         <li><a href="<%--<c:url value='/addTask/${acc}'/>--%>">Создать спор</a></li>
-        <%-- <li><a href="#">Filter</a>
+         <li><a href="#">Лига</a>
              <ul>
-                 <li><a href="">This week tasks</a></li>
-                 <li><a href="">This month tasks</a></li>
+                 <li><a href="">РФПЛ</a></li>
+                 <li><a href="">Англия</a></li>
+                 <li><a href="">Испания</a></li>
+                 <li><a href="">Лига чемпионов</a></li>
              </ul>
-         </li>--%>
-        <li><a href="" target="_blank">Изменить профиль</a></li>
+         </li>
+        <li><a href="" target="_blank">Мой профиль</a></li>
         <li><a onclick="document.forms['logoutForm'].submit()">
         </a>Выйти из ${pageContext.request.userPrincipal.name}</li>
 
@@ -290,26 +320,91 @@
 <br/>
 <br/>
 <br/>
-<br/>
+<h1><img src="https://img.championat.com/tournir/1497022072684428392.png" border="0" width="200" height="150"></h1>
 
 <table>
     <tr>
         <td>
-            <h2>Сыгранные матчи</h2>
+            <h3>Мои открытые споры в этой лиге</h3>
+            <table <%--class="tbl-content"--%>>
+                <tr class="tbl-header">
+                    <th width="25%">Дата</th>
+                    <th width="50%">Противостояние</th>
+                    <th width="25%">Ставка</th>
+                </tr>
+                <tr>
+                   <td>12.95.16</td>
+                   <td>Манчестер - Ливерпуль</td>
+                   <td>Победа хозяев</td>
+                </tr><tr>
+                   <td>12.95.16</td>
+                   <td>Манчестер - Ливерпуль</td>
+                   <td>Победа хозяев</td>
+                </tr><tr>
+                   <td>12.95.16</td>
+                   <td>Манчестер - Ливерпуль</td>
+                   <td>Победа хозяев</td>
+                </tr>
+                </table>
+
+        </td>
+        <td>
+            <h3>Все непринятые споры в этой лиге</h3>
+            <table <%--class="tbl-content"--%>>
+                <tr class="tbl-header">
+                    <th width="25%">Дата</th>
+                    <th width="50%">Противостояние</th>
+                    <th width="25%">Ставка</th>
+                </tr>
+                <tr>
+                    <td>12.95.16</td>
+                    <td>Манчестер - Ливерпуль</td>
+                    <td>Победа хозяев</td>
+                </tr><tr>
+                    <td>12.95.16</td>
+                    <td>Манчестер - Ливерпуль</td>
+                    <td>Победа хозяев</td>
+                </tr><tr>
+                    <td>12.95.16</td>
+                    <td>Манчестер - Ливерпуль</td>
+                    <td>Победа хозяев</td>
+                </tr><tr>
+                    <td>12.95.16</td>
+                    <td>Манчестер - Ливерпуль</td>
+                    <td>Победа хозяев</td>
+                </tr><tr>
+                    <td>12.95.16</td>
+                    <td>Манчестер - Ливерпуль</td>
+                    <td>Победа хозяев</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><a href="" class="ghost-button-semi-transparent">Показатать все</td>
+                    <td></td>
+                </tr>
+            </table>
+
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            <h2>Ближайшие матчи</h2>
             <c:if test="${!empty listOfMatches}">
                 <table class="tbl-content">
                     <tr class="tbl-header">
-                        <th width="120">Дата</th>
-                        <th width="120">Результат</th>
+                        <th width="30%">Дата</th>
+                        <th width="70%">Противостояние</th>
                     </tr>
                     <c:forEach items="${listOfMatches}" var="match">
                         <tr>
-                            <c:if test="${match.finished}">
+                            <c:if test="${!match.finished}">
                                 <td>${match.date}</td>
                                 <td><a href="" class="ghost-button-semi-transparent">
-                                        ${match.left} ${match.leftRes} : ${match.rightRes} ${match.right}</a></td>
+                                    <img src="${match.leftPic}" border="0" width="25" height="25">
+                                        ${match.left} : ${match.right}
+                                    <img src="${match.rightPic}" border="0" width="25" height="25"> </a></td>
                             </c:if>
-
                                 <%--  <td>${task.deadLineOfTask}</td>
                                   <td><a href="<c:url value='/edit/${task.numberOfTask}/${acc}'/>" class="button24"> Edit</a></td>
                                   <td><a href="<c:url value='/done/${task.numberOfTask}/${acc}'/>">
@@ -325,20 +420,23 @@
             </c:if>
         </td>
         <td>
-            <h2>Ближайшие матчи</h2>
+            <h2>Сыгранные матчи</h2>
             <c:if test="${!empty listOfMatches}">
                 <table class="tbl-content">
                     <tr class="tbl-header">
-                        <th width="120">Дата</th>
-                        <th width="120">Противостояние</th>
+                        <th width="30%">Дата</th>
+                        <th width="70%">Результат</th>
                     </tr>
                     <c:forEach items="${listOfMatches}" var="match">
-                        <tr>
-                            <c:if test="${!match.finished}">
+                        <tr >
+                            <c:if test="${match.finished}">
                                 <td>${match.date}</td>
-                                <td><a href="" class="ghost-button-semi-transparent">
-                                        ${match.left} : ${match.right}</a></td>
+                                <td><a href="" class="ghost-button-semi-transparent-for-finished">
+                                    <img src="${match.leftPic}" border="0" width="25" height="25">
+                                      ${match.left} ${match.leftRes} : ${match.rightRes} ${match.right}
+                                    <img src="${match.rightPic}" border="0" width="25" height="25"> </a></td>
                             </c:if>
+
                                 <%--  <td>${task.deadLineOfTask}</td>
                                   <td><a href="<c:url value='/edit/${task.numberOfTask}/${acc}'/>" class="button24"> Edit</a></td>
                                   <td><a href="<c:url value='/done/${task.numberOfTask}/${acc}'/>">

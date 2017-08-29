@@ -10,6 +10,8 @@ public class Match {
     private int rightRes;
     private boolean finished;
     private String date;
+    private String leftPic;
+    private String rightPic;
 
     public String getLeft() {
         return left;
@@ -57,6 +59,22 @@ public class Match {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getLeftPic() {
+        return leftPic;
+    }
+
+    public void setLeftPic(String leftPic) {
+        this.leftPic = leftPic;
+    }
+
+    public String getRightPic() {
+        return rightPic;
+    }
+
+    public void setRightPic(String rightPic) {
+        this.rightPic = rightPic;
     }
 
     @Override

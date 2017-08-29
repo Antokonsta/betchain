@@ -9,7 +9,9 @@ import ru.betchain.applicationcore.matchCenter.vo.Match;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Anton on 25.08.17.
@@ -17,9 +19,9 @@ import java.util.List;
 @Component
 public class MatchesMinerFromSites {
 
-    private static final String DEFAULT_URL = "https://www.championat.com/football/_spain.html";
+    private static final String DEFAULT_URL = "https://www.championat.com/football/_england.html";
 
-    public List<Match> getMatchesByUrl (String url) throws IOException {
+    public List<Match> getMatchesByUrl(String url) throws IOException {
         Document doc = Jsoup.connect(url != null ? url : DEFAULT_URL).get();
         //  Elements el = doc.select("div.sport__calendar__block__row");
         Elements el1 = doc.select("div.sport__calendar__block");
@@ -45,10 +47,30 @@ public class MatchesMinerFromSites {
                     game.setFinished(true);
                 }
                 game.setDate(date);
+
+                Map<String, String> teamsIcons = getTeamsIcons();
+                game.setLeftPic(teamsIcons.get(game.getLeft()));
+                game.setRightPic(teamsIcons.get(game.getRight()));
                 games.add(game);
             }
         }
         return games;
     }
+
+    private Map<String,String> getTeamsIcons() throws IOException {
+        Document doc = Jsoup.connect("https://www.championat.com/football/_england/2214/teams.html").get();
+        Elements el1 = doc.select("div.sport__table");
+        Element teams = el1.get(0);
+        Elements tds = teams.select("td");
+        Map<String, String> teamsWithRef = new HashMap<>();
+        for (Element td : tds) {
+            Elements teamWithRef = td.select("img[alt]");
+            for (Element element : teamWithRef) {
+                teamsWithRef.put(element.attr("alt"), element.attr("src"));
+            }
+        }
+        return teamsWithRef;
+    }
+
 
 }
