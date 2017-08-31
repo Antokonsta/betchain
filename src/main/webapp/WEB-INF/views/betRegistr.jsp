@@ -16,12 +16,13 @@
 
     <style type="text/css">
         @import url(http://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+
         body {
             background: -webkit-linear-gradient(left, #25c481, #25b7c4);
             background: linear-gradient(to right, #25c481, #25b7c4);
             font-family: 'Roboto', sans-serif;
         }
-        </style>
+    </style>
 
     <![endif]-->
 
@@ -34,25 +35,29 @@
     <script src="js/sky-forms-ie8.js"></script>
     <![endif]-->
 </head>
-<body >
+<body>
 <div class="body">
 
     <form action="" class="sky-form">
         <header>Регистрация спора</header>
-        <header> <img src="${matchLeftPic}" border="0" width="50" height="50">
+        <header><img src="${matchLeftPic}" border="0" width="50" height="50">
             ${matchLeft} : ${matchRight}
             <img src="${matchRightPic}" border="0" width="50" height="50"></header>
-
         <fieldset>
             <div class="row">
                 <section class="col col-6">
                     <label class="textarea">
-                        <textarea readonly rows="2" placeholder="User">${pageContext.request.userPrincipal.name}</textarea>
+                        <i class="icon-prepend"> <img src='../../resources/img/images.png' border="0" width="20"
+                                                      height="20"></i>
+                        <textarea readonly rows="1"
+                                  placeholder="User">${pageContext.request.userPrincipal.name}</textarea>
                     </label>
                 </section>
                 <section class="col col-6">
                     <label class="textarea">
-                        <textarea readonly rows="2" placeholder="Date">18.05.2017</textarea>
+                        <i class="icon-prepend"> <img src='../../resources/img/calendrier.png' border="0" width="20"
+                                                      height="20"></i>
+                        <textarea readonly rows="1" placeholder="Date">18.05.2017</textarea>
                     </label>
                 </section>
             </div>
@@ -61,106 +66,55 @@
 
         <fieldset>
             <div class="row">
-                <section class="col col-5">
+                <section class="col col-6">
+                    <label class="label">Ставки на игру</label>
+                    <label class="toggle"><input type="checkbox" name="checkbox-toggle" checked><i></i>Тестовая
+                        валюта</label>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col col-6">
+                    <label class="input">
+                        <i class="icon-prepend"> <img src='../../resources/img/money.png' border="0" width="20"
+                                                      height="20"></i>
+                        <input type="text" placeholder="Ставка">
+                    </label>
+                </section>
+                <section class="col col-6">
                     <label class="select">
                         <select>
-                            <option value="0" selected disabled>Country</option>
-                            <option value="244">Aaland Islands</option>
-                            <option value="1">Afghanistan</option>
-                            <option value="2">Albania</option>
-                            <option value="3">Algeria</option>
-
+                            <option value="0" selected disabled>Ставка на</option>
+                            <option value="1">Хозяева</option>
+                            <option value="2">Гости</option>
                             <select>
                                 <i></i>
                     </label>
                 </section>
-
-                <section class="col col-4">
-                    <label class="input">
-                        <input type="tel" placeholder="City">
-                    </label>
-                </section>
-
-                <section class="col col-3">
-                    <label class="input">
-                        <input type="tel" placeholder="Post code">
-                    </label>
-                </section>
             </div>
-
-            <section>
-                <label for="file" class="input">
-                    <input type="tel" placeholder="Address">
-                </label>
-            </section>
-
-            <section>
-                <label class="textarea">
-                    <textarea rows="3" placeholder="Additional info"></textarea>
-                </label>
-            </section>
         </fieldset>
-
         <fieldset>
-            <section>
-                <div class="inline-group">
-                    <label class="radio"><input type="radio" name="radio-inline" checked><i></i>Visa</label>
-                    <label class="radio"><input type="radio" name="radio-inline"><i></i>MasterCard</label>
-                    <label class="radio"><input type="radio" name="radio-inline"><i></i>PayPal</label>
-                </div>
-            </section>
-
-            <section>
-                <label class="input">
-                    <input type="text" placeholder="Name on card">
-                </label>
-            </section>
-
             <div class="row">
-                <section class="col col-10">
-                    <label class="input">
-                        <input type="text" placeholder="Card numberd">
-                    </label>
+                <section class="col col-6">
+                    <label class="toggle"><input type="checkbox" name="checkbox-toggle" checked><i></i>Приватный спор</label>
                 </section>
-                <section class="col col-2">
-                    <label class="input">
-                        <input type="text" maxlength="3" placeholder="CVV2">
-                    </label>
-                </section>
-            </div>
-
-            <div class="row">
-                <label class="label col col-4">Expiration date</label>
-                <section class="col col-5">
+                <section class="col col-6">
                     <label class="select">
                         <select>
-                            <option value="0" selected disabled>Month</option>
-                            <option value="1">January</option>
-                            <option value="1">February</option>
-                            <option value="3">March</option>
-                            <option value="4">April</option>
-                            <option value="5">May</option>
-                            <option value="6">June</option>
-                            <option value="7">July</option>
-                            <option value="8">August</option>
-                            <option value="9">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
-                        </select>
-                        <i></i>
-                    </label>
-                </section>
-                <section class="col col-3">
-                    <label class="input">
-                        <input type="text" maxlength="4" placeholder="Year">
+                            <option value="0" selected disabled>Выберите друга</option>
+                            <option value="1">Леха</option>
+                            <option value="2">Тоха</option>
+                            <select>
+                                <i></i>
                     </label>
                 </section>
             </div>
         </fieldset>
 
+
+
         <footer>
-            <button type="submit" class="button">Continue</button>
+            <button type="submit" class="button">Создать</button>
+            <button type="button" class="button button-secondary" onclick="window.history.back();">Назад</button>
         </footer>
     </form>
 
