@@ -32,8 +32,7 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
-    @Autowired
-    private MatchesMinerFromSites matchesMinerFromSites;
+
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
@@ -64,17 +63,6 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model) {
-        try {
-            model.addAttribute("listOfMatches", matchesMinerFromSites.getMatchesByUrl(null));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        return "welcome";
-    }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(Model model) {

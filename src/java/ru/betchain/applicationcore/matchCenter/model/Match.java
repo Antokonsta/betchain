@@ -1,16 +1,34 @@
-package ru.betchain.applicationcore.matchCenter.vo;
+package ru.betchain.applicationcore.matchCenter.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by Anton on 24.08.17.
  */
+@Entity
+@Table(name = "matches")
 public class Match {
+    @Id
+    @Column(name = "id")
+    private String id;
+    @Column(name = "leftTeam")
     private String left;
+    @Column(name = "rightTeam")
     private String right;
+    @Column(name = "leftRes")
     private int leftRes;
+    @Column(name = "rightRes")
     private int rightRes;
+    @Column(name = "finished")
     private boolean finished;
+    @Column(name = "date")
     private String date;
+    @Column(name = "leftPic")
     private String leftPic;
+    @Column(name = "rightPic")
     private String rightPic;
 
     public String getLeft() {
@@ -75,6 +93,14 @@ public class Match {
 
     public void setRightPic(String rightPic) {
         this.rightPic = rightPic;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override

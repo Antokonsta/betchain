@@ -5,7 +5,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
-import ru.betchain.applicationcore.matchCenter.vo.Match;
+import ru.betchain.applicationcore.matchCenter.model.Match;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,6 +46,10 @@ public class MatchesMinerFromSites {
                     game.setRightRes(Integer.valueOf(span.get(1).ownText()));
                     game.setFinished(true);
                 }
+
+                String hrefForResult = select.get(2).attr("href");
+                String matchIdWithHtml = hrefForResult.split("/match/")[1];
+                game.setId(matchIdWithHtml.replaceAll(".html", ""));
                 game.setDate(date);
 
                 Map<String, String> teamsIcons = getTeamsIcons();
@@ -57,7 +61,7 @@ public class MatchesMinerFromSites {
         return games;
     }
 
-    public Map<String,String> getTeamsIcons() throws IOException {
+    public Map<String, String> getTeamsIcons() throws IOException {
         Document doc = Jsoup.connect("https://www.championat.com/football/_england/2214/teams.html").get();
         Elements el1 = doc.select("div.sport__table");
         Element teams = el1.get(0);
@@ -71,6 +75,7 @@ public class MatchesMinerFromSites {
         }
         return teamsWithRef;
     }
+
 
 
 }

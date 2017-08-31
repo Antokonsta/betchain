@@ -40,9 +40,9 @@
 
     <form action="" class="sky-form">
         <header>Регистрация спора</header>
-        <header><img src="${matchLeftPic}" border="0" width="50" height="50">
-            ${matchLeft} : ${matchRight}
-            <img src="${matchRightPic}" border="0" width="50" height="50"></header>
+        <header><img src="${match.leftPic}" border="0" width="50" height="50">
+            ${match.left} : ${match.right}
+            <img src="${match.rightPic}" border="0" width="50" height="50"></header>
         <fieldset>
             <div class="row">
                 <section class="col col-6">
@@ -57,7 +57,7 @@
                     <label class="textarea">
                         <i class="icon-prepend"> <img src='../../resources/img/calendrier.png' border="0" width="20"
                                                       height="20"></i>
-                        <textarea readonly rows="1" placeholder="Date">18.05.2017</textarea>
+                        <textarea readonly rows="1" placeholder="Date">${match.date}</textarea>
                     </label>
                 </section>
             </div>
