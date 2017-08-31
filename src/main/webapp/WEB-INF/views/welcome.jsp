@@ -400,7 +400,7 @@
                         <tr>
                             <c:if test="${!match.finished}">
                                 <td>${match.date}</td>
-                                <td><a href="" class="ghost-button-semi-transparent">
+                                <td><a href="<c:url value='/betRegistr/${match.left}-${match.right}'/>" class="ghost-button-semi-transparent">
                                     <img src="${match.leftPic}" border="0" width="25" height="25">
                                         ${match.left} : ${match.right}
                                     <img src="${match.rightPic}" border="0" width="25" height="25"> </a></td>

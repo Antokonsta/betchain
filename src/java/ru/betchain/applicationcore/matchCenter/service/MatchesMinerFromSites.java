@@ -57,7 +57,7 @@ public class MatchesMinerFromSites {
         return games;
     }
 
-    private Map<String,String> getTeamsIcons() throws IOException {
+    public Map<String,String> getTeamsIcons() throws IOException {
         Document doc = Jsoup.connect("https://www.championat.com/football/_england/2214/teams.html").get();
         Elements el1 = doc.select("div.sport__table");
         Element teams = el1.get(0);
