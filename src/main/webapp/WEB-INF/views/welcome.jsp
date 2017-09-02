@@ -341,8 +341,6 @@
                                     ${betMatch.match.left} : ${betMatch.match.right}
                                 <img src="${betMatch.match.rightPic}" border="0" width="25" height="25"> </a></td>
                         <td style="vertical-align: middle" >${betMatch.bet.priceOfInitiator} р. на <img src="${betMatch.winnerPic}" border="0" width="25" height="25"></td>
-
-
                     </tr>
 
                 </c:forEach>

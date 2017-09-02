@@ -59,19 +59,8 @@ public class MatchCenterController {
             }
         }
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<Bet> betListForUser = matchCenterService.showBetsForUser(user.getUsername());
 
-        List<BetMatchAssociation> betMatchAssociationList = new ArrayList<>();
-        for (Bet bet : betListForUser) {
-            BetMatchAssociation betMatchAssociation = new BetMatchAssociation();
-            Match match = matchCenterService.findById(bet.getMatchId());
-            betMatchAssociation.setMatch(match);
-            betMatchAssociation.setBet(bet);
-            betMatchAssociationList.add(betMatchAssociation);
-            betMatchAssociation.setWinnerPic(bet.getInitiatorWinner().equals("right") ? match.getRightPic() :
-            match.getLeftPic());
-        }
+        List<BetMatchAssociation> betMatchAssociationList = matchCenterService.showBetMatchAssociation();
 
         model.addAttribute("betMatchForUser",betMatchAssociationList);
 

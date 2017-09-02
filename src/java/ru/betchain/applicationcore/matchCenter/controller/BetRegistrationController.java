@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.betchain.applicationcore.matchCenter.model.Bet;
+import ru.betchain.applicationcore.matchCenter.model.BetMatchAssociation;
 import ru.betchain.applicationcore.matchCenter.model.Match;
 import ru.betchain.applicationcore.matchCenter.service.BetRegistrationService;
 import ru.betchain.applicationcore.matchCenter.service.MatchCenterService;
@@ -64,6 +65,10 @@ public class BetRegistrationController {
         } finally {
             model.addAttribute("listOfMatches", matchesByUrl != null ? matchesByUrl : null);
         }
+
+        List<BetMatchAssociation> betMatchAssociationList = matchCenterService.showBetMatchAssociation();
+
+        model.addAttribute("betMatchForUser",betMatchAssociationList);
 
         return "welcome";
     }
