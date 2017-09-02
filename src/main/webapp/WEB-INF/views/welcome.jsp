@@ -88,6 +88,7 @@
             border-bottom: solid 1px rgba(255, 255, 255, 0.1);
         }
 
+
         /* demo styles */
 
         @import url(http://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
@@ -320,7 +321,7 @@
 <br/>
 <br/>
 <br/>
-<h1><img src="https://img.championat.com/tournir/1497022072684428392.png" border="0" width="200" height="150"></h1>
+<h1><img src="https://img.championat.com/tournir/1497022072684428392.png" border="0" width="175" height="150"></h1>
 
 <table>
     <tr>
@@ -328,23 +329,23 @@
             <h3>Мои открытые споры в этой лиге</h3>
             <table <%--class="tbl-content"--%>>
                 <tr class="tbl-header">
-                    <th width="25%">Дата</th>
+                    <th width="20%">Дата</th>
                     <th width="50%">Противостояние</th>
-                    <th width="25%">Ставка</th>
+                    <th width="30%">Ставка</th>
                 </tr>
-                <tr>
-                   <td>12.95.16</td>
-                   <td>Манчестер - Ливерпуль</td>
-                   <td>Победа хозяев</td>
-                </tr><tr>
-                   <td>12.95.16</td>
-                   <td>Манчестер - Ливерпуль</td>
-                   <td>Победа хозяев</td>
-                </tr><tr>
-                   <td>12.95.16</td>
-                   <td>Манчестер - Ливерпуль</td>
-                   <td>Победа хозяев</td>
-                </tr>
+                <c:forEach items="${betMatchForUser}" var="betMatch">
+                    <tr>
+                            <td>${betMatch.match.date}</td>
+                            <td><a href="" class="ghost-button-semi-transparent">
+                                <img src="${betMatch.match.leftPic}" border="0" width="25" height="25">
+                                    ${betMatch.match.left} : ${betMatch.match.right}
+                                <img src="${betMatch.match.rightPic}" border="0" width="25" height="25"> </a></td>
+                        <td style="vertical-align: middle" >${betMatch.bet.priceOfInitiator} р. на <img src="${betMatch.winnerPic}" border="0" width="25" height="25"></td>
+
+
+                    </tr>
+
+                </c:forEach>
                 </table>
 
         </td>
@@ -400,19 +401,12 @@
                         <tr>
                             <c:if test="${!match.finished}">
                                 <td>${match.date}</td>
-                                <td><a href="<c:url value='/betRegistr/${match.id}'/>" class="ghost-button-semi-transparent">
+                                <td><a href="<c:url value='/betRegistr/${pageContext.request.userPrincipal.name}/${match.id}'/>" class="ghost-button-semi-transparent">
                                     <img src="${match.leftPic}" border="0" width="25" height="25">
                                         ${match.left} : ${match.right}
                                     <img src="${match.rightPic}" border="0" width="25" height="25"> </a></td>
                             </c:if>
-                                <%--  <td>${task.deadLineOfTask}</td>
-                                  <td><a href="<c:url value='/edit/${task.numberOfTask}/${acc}'/>" class="button24"> Edit</a></td>
-                                  <td><a href="<c:url value='/done/${task.numberOfTask}/${acc}'/>">
-                                      <img src="http://suttonstoves.co.uk/images/Icon-check-white.png"
-                                           border="0" width="25" height="25" align="middle" ></a></td>
-                                  <td><a href="<c:url value='/remove/${task.numberOfTask}/${acc}'/>">
-                                      <img src="http://www.iconsplace.com/icons/preview/white/delete-256.png"
-                                           border="0" width="25" height="25"  ></a></td>--%>
+
                         </tr>
 
                     </c:forEach>
@@ -436,17 +430,7 @@
                                       ${match.left} ${match.leftRes} : ${match.rightRes} ${match.right}
                                     <img src="${match.rightPic}" border="0" width="25" height="25"> </a></td>
                             </c:if>
-
-                                <%--  <td>${task.deadLineOfTask}</td>
-                                  <td><a href="<c:url value='/edit/${task.numberOfTask}/${acc}'/>" class="button24"> Edit</a></td>
-                                  <td><a href="<c:url value='/done/${task.numberOfTask}/${acc}'/>">
-                                      <img src="http://suttonstoves.co.uk/images/Icon-check-white.png"
-                                           border="0" width="25" height="25" align="middle" ></a></td>
-                                  <td><a href="<c:url value='/remove/${task.numberOfTask}/${acc}'/>">
-                                      <img src="http://www.iconsplace.com/icons/preview/white/delete-256.png"
-                                           border="0" width="25" height="25"  ></a></td>--%>
                         </tr>
-
                     </c:forEach>
                 </table>
             </c:if>

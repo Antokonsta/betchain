@@ -1,11 +1,17 @@
 package ru.betchain.applicationcore.matchCenter.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.betchain.applicationcore.login.dao.UserDao;
 import ru.betchain.applicationcore.matchCenter.dao.AllMatchesDao;
+import ru.betchain.applicationcore.matchCenter.dao.BetsDaoFromTable;
+import ru.betchain.applicationcore.matchCenter.model.Bet;
 import ru.betchain.applicationcore.matchCenter.model.Match;
+
+import java.util.List;
 
 /**
  * Created by Anton on 31.08.17.
@@ -16,6 +22,10 @@ public class MatchCenterServiceImpl implements MatchCenterService {
     @Autowired
     private AllMatchesDao allMatchesDao;
 
+    @Autowired
+    @Qualifier(value = "betsDaoFromTable")
+    private BetsDaoFromTable betsDaoFromTable;
+
     @Override
     public void save(Match match) {
         allMatchesDao.save(match);
@@ -24,5 +34,11 @@ public class MatchCenterServiceImpl implements MatchCenterService {
     @Override
     public Match findById(String id) {
         return allMatchesDao.findById(id);
+    }
+
+    @Override
+    @Transactional
+    public List<Bet> showBetsForUser(String userName) {
+        return betsDaoFromTable.showBetsForUser(userName);
     }
 }

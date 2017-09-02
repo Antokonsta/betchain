@@ -1,16 +1,24 @@
 package ru.betchain.applicationcore.matchCenter.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ru.betchain.applicationcore.login.service.SecurityServiceImpl;
+import ru.betchain.applicationcore.matchCenter.dao.BetsDaoFromTable;
+import ru.betchain.applicationcore.matchCenter.model.Bet;
+import ru.betchain.applicationcore.matchCenter.model.BetMatchAssociation;
 import ru.betchain.applicationcore.matchCenter.model.Match;
 import ru.betchain.applicationcore.matchCenter.service.MatchCenterService;
 import ru.betchain.applicationcore.matchCenter.service.MatchesMinerFromSites;
 import sun.misc.Contended;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,8 +33,13 @@ public class MatchCenterController {
     @Autowired
     MatchCenterService matchCenterService;
 
+
+
+
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
+
+        //получаем игры с чемпионата
         List<Match> matchesByUrl = null;
         try {
             matchesByUrl = matchesMinerFromSites.getMatchesByUrl(null);
@@ -36,13 +49,31 @@ public class MatchCenterController {
         } finally {
             model.addAttribute("listOfMatches", matchesByUrl != null ? matchesByUrl : null);
         }
+
+        // сохраняем в бд новые
         if (matchesByUrl != null) {
             for (Match match : matchesByUrl) {
-                if(matchCenterService.findById(match.getId()) == null){
+                if (matchCenterService.findById(match.getId()) == null) {
                     matchCenterService.save(match);
                 }
             }
         }
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Bet> betListForUser = matchCenterService.showBetsForUser(user.getUsername());
+
+        List<BetMatchAssociation> betMatchAssociationList = new ArrayList<>();
+        for (Bet bet : betListForUser) {
+            BetMatchAssociation betMatchAssociation = new BetMatchAssociation();
+            Match match = matchCenterService.findById(bet.getMatchId());
+            betMatchAssociation.setMatch(match);
+            betMatchAssociation.setBet(bet);
+            betMatchAssociationList.add(betMatchAssociation);
+            betMatchAssociation.setWinnerPic(bet.getInitiatorWinner().equals("right") ? match.getRightPic() :
+            match.getLeftPic());
+        }
+
+        model.addAttribute("betMatchForUser",betMatchAssociationList);
 
         return "welcome";
     }

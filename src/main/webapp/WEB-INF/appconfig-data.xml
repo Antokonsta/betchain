@@ -35,12 +35,21 @@
         </property>
     </bean>
 
+
+    <bean id="betsDaoFromTable" class="ru.betchain.applicationcore.matchCenter.dao.BetsDaoFromTableImpl">
+    </bean>
+
     <bean id="transactionManager"
           class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
-    <tx:annotation-driven/>
+    <!--<tx:annotation-driven transaction-manager="transactionManager"/>
+    <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>-->
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <jpa:repositories base-package="ru.betchain.applicationcore.login.dao"/>
     <jpa:repositories base-package="ru.betchain.applicationcore.matchCenter.dao"/>

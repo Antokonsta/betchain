@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
@@ -37,8 +41,9 @@
 </head>
 <body>
 <div class="body">
-
-    <form action="" class="sky-form">
+    <c:url var="addAction" value = "/betRegistr/add/${match.id}"/>
+    <form:form action="${addAction}" commandName="bet" class="sky-form">
+   <%-- <form action="${addAction}"  method="post" class="sky-form">--%>
         <header>Регистрация спора</header>
         <header><img src="${match.leftPic}" border="0" width="50" height="50">
             ${match.left} : ${match.right}
@@ -49,8 +54,12 @@
                     <label class="textarea">
                         <i class="icon-prepend"> <img src='../../resources/img/images.png' border="0" width="20"
                                                       height="20"></i>
-                        <textarea readonly rows="1"
-                                  placeholder="User">${pageContext.request.userPrincipal.name}</textarea>
+                        <form:textarea path="userInitiator" readonly="true" rows="1"/>
+                       <%-- <textarea readonly rows="1"
+                                  placeholder="User">${pageContext.request.userPrincipal.name}</textarea>--%>
+
+
+
                     </label>
                 </section>
                 <section class="col col-6">
@@ -77,16 +86,17 @@
                     <label class="input">
                         <i class="icon-prepend"> <img src='../../resources/img/money.png' border="0" width="20"
                                                       height="20"></i>
-                        <input type="text" placeholder="Ставка">
+                        <%--<input type="text" placeholder="Ставка">--%>
+                        <form:input path="priceOfInitiator"/>
                     </label>
                 </section>
                 <section class="col col-6">
                     <label class="select">
-                        <select>
+                        <form:select path="initiatorWinner">
                             <option value="0" selected disabled>Ставка на</option>
-                            <option value="1">Хозяева</option>
-                            <option value="2">Гости</option>
-                            <select>
+                            <option value="left">${match.left} </option>
+                            <option value="right">${match.right} </option>
+                            </form:select>
                                 <i></i>
                     </label>
                 </section>
@@ -116,7 +126,8 @@
             <button type="submit" class="button">Создать</button>
             <button type="button" class="button button-secondary" onclick="window.history.back();">Назад</button>
         </footer>
-    </form>
+    <%--</form>--%>
+    </form:form>
 
 </div>
 </body>
