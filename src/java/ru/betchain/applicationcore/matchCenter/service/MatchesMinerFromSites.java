@@ -19,10 +19,15 @@ import java.util.Map;
 @Component
 public class MatchesMinerFromSites {
 
-    private static final String DEFAULT_URL = "https://www.championat.com/football/_england.html";
+    private static final String ENGLAND_URL = "https://www.championat.com/football/_england.html";
+
+    private static final String WORLD_CUP = "https://www.championat.com/football/_worldcup.html";
+
+    private static final String ENGLAND_ICON = "https://www.championat.com/football/_england/2214/teams.html";
+    private static final String WORLD_ICON = "https://www.championat.com/football/_worldcup/1585/teams.html";
 
     public List<Match> getMatchesByUrl(String url) throws IOException {
-        Document doc = Jsoup.connect(url != null ? url : DEFAULT_URL).get();
+        Document doc = Jsoup.connect(url != null ? url : ENGLAND_URL).get();
         //  Elements el = doc.select("div.sport__calendar__block__row");
         Elements el1 = doc.select("div.sport__calendar__block");
         List<Match> games = new ArrayList<>();
@@ -44,6 +49,7 @@ public class MatchesMinerFromSites {
                 if (span.size() != 0) {
                     game.setLeftRes(Integer.valueOf(span.get(0).ownText()));
                     game.setRightRes(Integer.valueOf(span.get(1).ownText()));
+                    game.setRightRes(Integer.valueOf(span.get(1).ownText()));
                     game.setFinished(true);
                 }
 
@@ -62,7 +68,7 @@ public class MatchesMinerFromSites {
     }
 
     public Map<String, String> getTeamsIcons() throws IOException {
-        Document doc = Jsoup.connect("https://www.championat.com/football/_england/2214/teams.html").get();
+        Document doc = Jsoup.connect(ENGLAND_ICON).get();
         Elements el1 = doc.select("div.sport__table");
         Element teams = el1.get(0);
         Elements tds = teams.select("td");
